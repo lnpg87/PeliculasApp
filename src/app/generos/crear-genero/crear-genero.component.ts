@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { parsearErroresAPI } from 'src/app/utilidades/utilidades';
+import { generoCreacionDto } from '../genero';
+import { GeneroService } from '../genero.service';
 
 @Component({
   selector: 'app-crear-genero',
@@ -9,20 +12,18 @@ import { Router } from '@angular/router';
 })
 export class CrearGeneroComponent implements OnInit {
 
+  errores: string[] = [];
 
-
-  form: FormGroup;
-
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private generoService: GeneroService) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      nombre: ''
-    });
+
   }
 
-  guardarCambios() {
-    this.router.navigate(['/generos']);
+  guardarCambios(genero: generoCreacionDto) {
+    this.generoService.crear(genero).subscribe(() => {
+      this.router.navigate(['/generos']);
+    }, error => this.errores = parsearErroresAPI(error));
   }
 
 }

@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { MarkdownModule } from 'ngx-markdown';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+//import 'leaflet/dist/images/marker-shadow.png';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module'; 
+import { MaterialModule } from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
 import { ListadoPeliculasComponent } from './peliculas/listado-peliculas/listado-peliculas.component';
 import { ListadoGenericoComponent } from './utilidades/listado-generico/listado-generico.component';
@@ -19,6 +23,24 @@ import { IndiceCineComponent } from './cines/indice-cine/indice-cine.component';
 import { CrearCineComponent } from './cines/crear-cine/crear-cine.component';
 import { EditarActorComponent } from './actores/editar-actor/editar-actor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormularioGeneroComponent } from './generos/formulario-genero/formulario-genero.component';
+import { EditarGeneroComponent } from './generos/editar-genero/editar-genero.component';
+import { FiltroPeliculasComponent } from './peliculas/filtro-peliculas/filtro-peliculas.component';
+import { FormularioActoresComponent } from './actores/formulario-actores/formulario-actores.component';
+import { InputImgComponent } from './utilidades/input-img/input-img.component';
+import { InputMarkdownComponent } from './utilidades/input-markdown/input-markdown.component';
+import { FormularioCineComponent } from './cines/formulario-cine/formulario-cine.component';
+import { EditarCineComponent } from './cines/editar-cine/editar-cine.component';
+import { MapaComponent } from './utilidades/mapa/mapa.component';
+import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/formulario-pelicula.component';
+import { EditarPeliculaComponent } from './peliculas/editar-pelicula/editar-pelicula.component';
+import { SelectorMultipleComponent } from './utilidades/selector-multiple/selector-multiple.component';
+import { AutocompleteActoresComponent } from './actores/autocomplete-actores/autocomplete-actores.component';
+import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-errores.component';
+import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
+import { AutorizadoComponent } from './seguridad/autorizado/autorizado.component';
+import { LoginComponent } from './seguridad/login/login.component';
+
 
 
 @NgModule({
@@ -36,16 +58,37 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CrearPeliculaComponent,
     IndiceCineComponent,
     CrearCineComponent,
-    EditarActorComponent
+    EditarActorComponent,
+    FormularioGeneroComponent,
+    EditarGeneroComponent,
+    FiltroPeliculasComponent,
+    FormularioActoresComponent,
+    InputImgComponent,
+    InputMarkdownComponent,
+    FormularioCineComponent,
+    EditarCineComponent,
+    MapaComponent,
+    FormularioPeliculaComponent,
+    EditarPeliculaComponent,
+    SelectorMultipleComponent,
+    AutocompleteActoresComponent,
+    MostrarErroresComponent,
+    DetallePeliculaComponent,
+    AutorizadoComponent,
+    LoginComponent
   ],
- 
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    LeafletModule,
+    HttpClientModule,
+    MarkdownModule.forRoot(),
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

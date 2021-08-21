@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PeliculaDTO } from '../peliculas/peliculas';
+import { PeliculasService } from '../peliculas/peliculas.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,26 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  peliculasEnCines: PeliculaDTO[];
+  peliculasProximosEstrenos: PeliculaDTO[];
 
-  peliculasEnCines: any;
-  peliculasProximosEstrenos: any = [];
+  constructor(private peliculasService: PeliculasService) { }
   
   ngOnInit(): void {
+    this.cargarDatos();
+  }
 
-    this.peliculasEnCines = [{
-      titulo: 'Spider-Man',
-      fechaLanzamiento: new Date(),
-      precio: 1400.99,
-      poster: 'https://cdn.europosters.eu/image/750/posters/spider-man-miles-morales-cybernetic-swing-i100282.jpg'
-    },
-    {
-      titulo: 'Moana',
-      fechaLanzamiento: new Date('2016-11-14'),
-      precio: 300.99,
-      poster: 'https://i.pinimg.com/originals/73/3c/f5/733cf519363ff0401658ea9df8384c2f.jpg'
-    }];
+  cargarDatos(){
+    this.peliculasService.obtenerLandingPage().subscribe(landingPage => {
+      this.peliculasEnCines = landingPage.enCines;
+      this.peliculasProximosEstrenos = landingPage.proximosEstrenos;
+    });
+  }
 
+  borrado(){
+    this.cargarDatos();
   }
 }
 
